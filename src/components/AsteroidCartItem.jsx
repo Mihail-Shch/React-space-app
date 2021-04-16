@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 
 
 import dino from '../img/dino.svg';
-import asteroidImg from '../img/asteroid.svg';
 
 function AsteroidCartItem({ item, setItemForPage, deleteItem }) {
     return (
         <Link to={`./asteroid/${item.id}`} onClick={() => setItemForPage(item)}>
+            <div className="asteroid__wrapper cart">
             <div className={classNames('content__asteroids-item', 'asteroid', 'cart', {
                 'green': item.dangerous !== true,
                 'red': item.dangerous === true,
@@ -18,7 +18,6 @@ function AsteroidCartItem({ item, setItemForPage, deleteItem }) {
             })}>
                 <div className="asteroid__close" onClick={(e) => deleteItem(e, item)}>X</div>
                 <img src={dino} className="asteroid__dino" alt="dino" width="56" height="48" />
-                <img src={asteroidImg} className="asteroid__photo" alt="asteroid" />
                 <div className="asteroid__desc-wrapper">
                     <div className="asteroid__desc">
                         <span className="asteroid__title">{item.name}</span>
@@ -46,6 +45,7 @@ function AsteroidCartItem({ item, setItemForPage, deleteItem }) {
                         </p>
                     </div>
                 </div>
+            </div>
             </div>
         </Link>
     )

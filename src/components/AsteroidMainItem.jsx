@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
 import dino from '../img/dino.svg';
-import asteroidImg from '../img/asteroid.svg';
 
 function AsteroidMainItem({ item, setItemForPage, activeDistance, onClickAddToCart }) {
 
@@ -42,8 +41,6 @@ function AsteroidMainItem({ item, setItemForPage, activeDistance, onClickAddToCa
                         'large': item.size > 500
                     })}>
                         <img src={dino} className="asteroid__dino" alt="dino" width="56" height="48" />
-                        <img src={asteroidImg} className="asteroid__photo" alt="asteroid" />
-                        <div className="desc__wrapper">
                         <div className="asteroid__desc-wrapper">
                             <div className="asteroid__desc">
                                 <span className="asteroid__title">{item.name}</span>
@@ -76,7 +73,6 @@ function AsteroidMainItem({ item, setItemForPage, activeDistance, onClickAddToCa
                                      : <button className="asteroid__btn" onClick={(e) => e.preventDefault()}>В корзине</button>
                                 }
                             </div>
-                        </div>
                         </div>
                     </div>
                     </div>

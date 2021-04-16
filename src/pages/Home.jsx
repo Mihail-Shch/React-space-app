@@ -133,13 +133,6 @@ function Home() {
             <footer className="footer">
                 <div className="container">
                     <p className="footer__rights">2021 &copy; Все права и планета защищены</p>
-                    {/* Текст для прокрутки контента, если при фильтре астероидов их будет < 3 */}
-                    <p className="footer__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                    Non, qui adipisci vel deleniti sapiente ipsam deserunt corporis voluptatum iure dolorem blanditiis odit accusantium distinctio fuga. 
-                    Deleniti dolor vel dignissimos. Eum, ullam rem! Asperiores, itaque sunt modi laborum labore aliquam harum, facere, numquam illo suscipit veniam aliquid debitis. 
-                    Possimus optio, ipsam culpa consectetur asperiores laborum unde quam doloremque provident repellat minima, omnis at, molestiae deserunt consequatur labore corporis ratione perferendis. 
-                    Dolore distinctio, sed voluptatum numquam sit reprehenderit aut ea eaque sint porro quae vero veritatis suscipit ipsam. 
-                    Minus repellat officiis laboriosam magni incidunt perferendis tempora quas dignissimos. Officiis iusto autem neque.</p>
                 </div>
             </footer>
         </div>

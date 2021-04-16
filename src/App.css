@@ -161,7 +161,7 @@ button:hover {
     padding: 24px;
 
     width: 100%;
-    min-height: 200px;
+    height: 200px;
 
     border-radius: 10px;
     border: 1px solid #000;
@@ -172,20 +172,20 @@ button:hover {
 }
 
 .content__asteroids-item.green {
-    background: linear-gradient(90deg, #CFF37D 0%, #7DE88C 100%);
+    background-image: url('./img/asteroid.svg'), linear-gradient(90deg, #CFF37D 0%, #7DE88C 100%);
+    background-repeat: no-repeat;
 }
 
 .content__asteroids-item.red {
-    background: linear-gradient(90deg, #FFB199 0%, #FF0844 100%);
+    background-image: url('./img/asteroid.svg'), linear-gradient(90deg, #FFB199 0%, #FF0844 100%);
+    background-repeat: no-repeat;
 }
 
-.asteroid {
-    overflow: hidden;
-}
+/* .asteroid {
+    background: url(./img/asteroid.svg) no-repeat;
+    background-size: 30px 30px;
+} */
 
-.asteroid img {
-    position: absolute;
-}
 
 .asteroid__close {
     position: absolute;
@@ -206,35 +206,31 @@ button:hover {
 }
 
 .asteroid__dino {
+    position: absolute;
     bottom: 0;
     left: 16px;
 }
 
-.asteroid.small .asteroid__photo {
-    left: 122px;
-    top: 28px;
+.asteroid.small {
+    background-position-x: 122px, 100%;
+    background-position-y: 28px, 100%;
 }
 
-.asteroid.medium .asteroid__photo {
-    left: 72px;
-    top: -79px;
-
-
-    width: 186px;
-    height: 189px;
+.asteroid.medium {
+    background-size: 186px 189px, cover;
+    background-position-x: 72px, 100%;
+    background-position-y: -79px, 100%;
 }
 
-.asteroid.large .asteroid__photo {
-    left: -78px;
-    top: -488px;
+.asteroid.large  {
+    background-size: 598px 607px, cover;
+    background-position-x: -99px, 100%;
+    background-position-y: -488px, 100%;
 
-    width: 598px;
-    height: 607px;
 }
 
 .asteroid__desc-wrapper {
     position: relative;
-    z-index: 2;
     
     display: flex;
     align-items: center;
@@ -243,7 +239,7 @@ button:hover {
 
 .asteroid__desc {
     width: 31%;
-    margin-left: 40%;
+    margin-left: 37%;
 }
 
 .asteroid__title {
@@ -276,7 +272,7 @@ button:hover {
 }
 
 .asteroid__btn-wrapper {
-
+    width: 20%;
     text-align: center;
     padding-top: 20px;
 }
@@ -465,11 +461,18 @@ button:hover {
         margin-left: 23%;
     }
 
+    .asteroid__btn-wrapper {
+        width: 25%;
+    }
+
   }
 
 
-
   @media (max-width: 717px) {
+
+    .header__subtitle {
+        width: 53%;
+    }
 
     .asteroid {
         height: 270px;
@@ -536,12 +539,46 @@ button:hover {
 
   @media (max-width: 530px) {
 
+    .header__subtitle {
+        width: 60%;
+    }
+
     .asteroid__wrapper {
+        height: 350px;
+    }
+
+    .asteroid__wrapper.cart {
         height: 300px;
     }
 
-    .asteroid {
+    .asteroid.cart .asteroid__btn-wrapper {
+        padding-top: 0;
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+
+    .content__asteroids-item {
+        display: flex;
         height: 150px;
+
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+
+        padding: 0px;
+    }
+
+    .asteroid__title {
+        margin-bottom: 16px;
+    }
+
+    .asteroid__desc {
+        width: 55%;
+    }
+
+    .asteroid__btn-wrapper {
+        width: 100%;
     }
 
     .asteroid__wrapper {
@@ -551,7 +588,39 @@ button:hover {
     }
 
     .asteroid__desc-wrapper {
+        width: 100%;
+        margin-top: 106px;
         flex-direction: column;
+    }
+
+    .asteroid__rating {
+        margin-bottom: 0;
+    }
+
+    .asteroid__dino {
+        width: 35px;
+        height: 30px;
+
+        transform: scale(-1, 1);
+        left: auto;
+        right: 8px;
+    }
+
+    .asteroid.small {
+        background-position-x: 27px, 100%;
+        background-position-y: 15px, 100%;
+    }
+
+    .asteroid.medium {
+        background-size: 108px 109px, cover;
+        background-position-x: 27px, 100%;
+        background-position-y: -25px, 100%;
+    }
+    
+    .asteroid.large  {
+        background-size: 338px 341px, cover;
+        background-position-x: -38px, 100%;
+        background-position-y: -260px, 100%;
     }
 
     .content__asteroids-item {
@@ -560,6 +629,59 @@ button:hover {
 
     .content__asteroids-item {
         margin-top: 0;
+    }
+
+  }
+
+  @media (max-width: 480px) {
+
+    .asteroid__desc {
+        width: 65%;
+    }
+
+    .header__subtitle {
+        width: 70%;
+    }
+
+    .header__pages {
+          order: 2;
+          margin-top: 10px;
+      }
+
+    .header__btn {
+          margin-left: 0;
+          margin-right: 37px;
+      }
+
+    .header__btn-second {
+          margin-right: 0;
+      }
+  }
+
+  @media (max-width: 400px) {
+
+    .header__subtitle {
+        width: 80%;
+    }
+
+    .asteroid__desc {
+        width: 80%;
+    }
+  }
+
+  @media (max-width: 320px) {
+
+    .header__subtitle {
+        width: 100%;
+    }
+
+    .asteroid__desc {
+        width: 90%;
+    }
+
+    .content__btn + .content__btn {
+        margin-left: 0px;
+        margin-right: 5px;
     }
 
   }

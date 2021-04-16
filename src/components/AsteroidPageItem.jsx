@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 
 import dino from '../img/dino.svg';
-import asteroidImg from '../img/asteroid.svg';
 
 import { addToCart } from '../redux/actions/cart';
 
@@ -28,7 +27,8 @@ function AsteroidPageItem({ asteroid }) {
     }
 
     return (
-        <div className={classNames('content__asteroids-item', 'asteroid', {
+        <div className="asteroid__wrapper">
+            <div className={classNames('content__asteroids-item', 'asteroid', {
             'green': asteroid.dangerous !== true,
             'red': asteroid.dangerous === true,
             'small': asteroid.size < 200,
@@ -36,7 +36,6 @@ function AsteroidPageItem({ asteroid }) {
             'large': asteroid.size > 500
         })}>
             <img src={dino} className="asteroid__dino" alt="dino" width="56" height="48" />
-            <img src={asteroidImg} className="asteroid__photo" alt="asteroid" />
             <div className="asteroid__desc-wrapper">
                 <div className="asteroid__desc">
                     <span className="asteroid__title">{asteroid.name}</span>
@@ -68,6 +67,7 @@ function AsteroidPageItem({ asteroid }) {
                     }
                 </div>
             </div>
+        </div>
         </div>
     )
 }

@@ -18,7 +18,7 @@ const Header = React.memo(function Header() {
                         <Link to={'/'}><button className={classNames("header__btn", {
                             'active': location.pathname === '/'
                         })}>Астероиды</button></Link>
-                        <Link to={'/cart'}><button className={classNames("header__btn", {
+                        <Link to={'/cart'}><button className={classNames("header__btn", "header__btn-second", {
                             'active': location.pathname === '/cart'
                         })}>Уничтожение</button></Link>
                         { items.length > 0 && <i className="header__totalcount">{items.length}</i>}

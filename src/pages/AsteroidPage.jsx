@@ -34,11 +34,9 @@ function AsteroidPage({ match }) {
         <div className='container'>
             <Header />
             <h2 className='asteroidPage__title'>Asteroid info</h2>
+            <AsteroidPageItem asteroid={asteroid} />
             {
-                isLoaded ? <div>
-                    <AsteroidPageItem asteroid={asteroid} />
-                    <AsteroidPageTable item={asteroidInfo} />
-                </div> : <Loader />
+                isLoaded ? <AsteroidPageTable item={asteroidInfo} /> : <Loader />
             }
             <footer className="footer">
                 <p className="footer__rights">2021 &copy; Все права и планета защищены</p>
