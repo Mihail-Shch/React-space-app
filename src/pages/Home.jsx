@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Header, Loader, SortDanger, SortDistance, AsteroidMainItem } from '../components'
 
 import { setAsteroid } from '../redux/actions/asteroidPage'
-import { setFetching, setAsteroids, setStartDay } from '../redux/actions/asteroids';
+import { setFetching, setAsteroids, setStartDay, setStartMonth } from '../redux/actions/asteroids';
 import { addToCart } from '../redux/actions/cart';
 
 
@@ -19,6 +19,7 @@ function Home() {
     const fetching = useSelector(({ asteroids }) => asteroids.fetching)
     const asteroids = useSelector(({ asteroids }) => asteroids.items)
     const startDay = useSelector(({ asteroids }) => asteroids.startDay)
+    const startMonth = useSelector(({ asteroids }) => asteroids.startMonth)
 
 
     const onClickDistance = (num) => {
@@ -35,11 +36,9 @@ function Home() {
     }
 
     const date = new Date();
-    const month = date.getMonth() + 1;
     const year = date.getUTCFullYear();
 
-
-    const endDay = startDay + 1;
+    const lastDay = new Date(year, startMonth, 0).getDate();
 
 
     const checkDate = (el) => {
@@ -66,7 +65,7 @@ function Home() {
     }
 
     const getData = async () => {
-        const req = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${year}-${checkDate(month)}-${checkDate(startDay)}&end_date=${year}-${checkDate(month)}-${checkDate(endDay)}&api_key=${apiKey}`);
+        const req = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${year}-${checkDate(startMonth)}-${checkDate(startDay)}&end_date=${year}-${checkDate(startMonth)}-${checkDate(startDay)}&api_key=${apiKey}`);
         const { near_earth_objects } = await req.json();
 
         const orderedArr = {}
@@ -88,8 +87,13 @@ function Home() {
         }))
 
         dispatch(setAsteroids(modifiedArr))
-        dispatch(setStartDay(startDay + 2))
 
+        if (startDay !== lastDay) {
+            dispatch(setStartDay(startDay + 1))
+        } else if (startDay === lastDay) {
+            dispatch(setStartDay(1))
+            dispatch(setStartMonth(startMonth + 1))
+        }
         dispatch(setFetching(false))
     }
 

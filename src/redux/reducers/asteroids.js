@@ -1,10 +1,12 @@
 const date = new Date();
-const day = date.getDate()
+const day = date.getDate();
+const month = date.getMonth() + 1;
 
 const initialState = {
     items: [],
     fetching: true,
-    startDay: day
+    startDay: day,
+    startMonth: month
 }
 
 const asteroids = (state = initialState, action) => {
@@ -23,6 +25,11 @@ const asteroids = (state = initialState, action) => {
             return {
                 ...state,
                 startDay: action.payload
+            }
+        case "SET_START_MONTH":
+            return {
+                ...state,
+                startMonth: action.payload
             }
         default: return state
     }

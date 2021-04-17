@@ -12,3 +12,9 @@ export const setStartDay = (payload) => ({
     type: "SET_START_DAY",
     payload
 })
+
+export const setStartMonth = (payload) => ({
+    type: "SET_START_MONTH",
+    payload
+})
+
