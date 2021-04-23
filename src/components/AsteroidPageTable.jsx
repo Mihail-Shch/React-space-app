@@ -2,7 +2,7 @@ import React from 'react'
 import { Table } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
-function AsteroidPageTable({ item }) {
+function AsteroidPageTable({ info }) {
 
     return (
         <Table celled>
@@ -18,7 +18,7 @@ function AsteroidPageTable({ item }) {
 
             <Table.Body>
                 {
-                    item.close_approach_data.map((item, index) => {
+                    info.map((item, index) => {
                         return (
                             <Table.Row key={`${item.close_approach_date} + ${index}`}>
                                 <Table.Cell>{item.close_approach_date}</Table.Cell>

@@ -1,39 +1,21 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
-import { Header, AsteroidCartItem } from '../components'
-import { setAsteroid } from '../redux/actions/asteroidPage'
-import { deleteAsteroid } from '../redux/actions/cart'
+import { AsteroidMainItem } from '../components'
 
 
 function Cart() {
 
-    const dispatch = useDispatch();
-
-    const setItemForPage = item => {
-        dispatch(setAsteroid(item))
-    }
-
-
     const items = useSelector(({ cart }) => cart.items)
-
-    const deleteItemFromCart = (e, item) => {
-        e.preventDefault();
-        if (global.confirm("Удалить астероид?")) {
-            dispatch(deleteAsteroid(items.filter(obj => obj.id !== item.id)))
-        }
-    }
 
     return (
         <div className='container'>
-            <Header />
             {
-                items.length > 0 ? items.map(item => <AsteroidCartItem
-                    key={`${item.name} + ${item.size}`}
-                    item={item}
-                    setItemForPage={setItemForPage}
-                    deleteItem={deleteItemFromCart} />)
+                items.length > 0 ? items.map(item => <Link to={`/asteroid/${item.id}`} key={`${item.name} + ${item.size}`}>
+                    <AsteroidMainItem item={item} />
+                </Link>)
                     : <h1 className='cart__title'>Ваша корзина пуста.</h1>
             }
             {
@@ -41,9 +23,6 @@ function Cart() {
                     <button className="asteroid__btn" onClick={() => alert("Бригада выдвинулась!")}>Заказать бригаду</button>
                 </div> : ''
             }
-            <footer className="footer">
-                <p className="footer__rights">2021 &copy; Все права и планета защищены</p>
-            </footer>
         </div>
     )
 }
