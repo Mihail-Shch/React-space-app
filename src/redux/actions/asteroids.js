@@ -1,15 +1,15 @@
-const date = new Date();
-const year = date.getUTCFullYear();
+ export const fetchAsteroids = (startDay, startMonth) => async (dispatch) => {
+    
+    const apiKey = "JGVijdJBtxpdFTartZW4vlAhjQ0GHXjsSAnFkmZQ";
 
-const apiKey = "JGVijdJBtxpdFTartZW4vlAhjQ0GHXjsSAnFkmZQ";
-
-const checkDate = (el) => {
-    return el < 10 ? `0${el}` : el
-}   
-
-export const fetchAsteroids = (startDay, startMonth) => async (dispatch) => {
-
+    const date = new Date();
+    const year = date.getUTCFullYear();
     const lastDay = new Date(year, startMonth, 0).getDate();
+
+    const checkDate = (el) => {
+        return el < 10 ? `0${el}` : el
+    }  
+
 
     const req = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${year}-${checkDate(startMonth)}-${checkDate(startDay)}&end_date=${year}-${checkDate(startMonth)}-${checkDate(startDay)}&api_key=${apiKey}`);
         const { near_earth_objects } = await req.json();
