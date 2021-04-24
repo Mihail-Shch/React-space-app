@@ -12,10 +12,7 @@ function Home() {
 
     const dispatch = useDispatch();
 
-    const fetching = useSelector(({ asteroids }) => asteroids.fetching);
-    const asteroids = useSelector(({ asteroids }) => asteroids.items);
-    const startDay = useSelector(({ asteroids }) => asteroids.startDay);
-    const startMonth = useSelector(({ asteroids }) => asteroids.startMonth);
+    const { fetching, startDay, startMonth, items } = useSelector(({ asteroids }) => asteroids);
 
     const onClickDistance = (num) => {
         setActiveDistance(num)
@@ -44,6 +41,8 @@ function Home() {
         setIsDanger(!isDanger)
     }
 
+    const renderItems = isDanger ? items.filter(item => item.dangerous) : items;
+
     return (
         <div className='wrapper'>
             <section className="content">
@@ -54,19 +53,13 @@ function Home() {
                     </div>
                     <div className="content__asteroids">
                         {
-                            !isDanger ? asteroids.map(item =>
+                            renderItems.map(item =>
                                 <Link to={`/asteroid/${item.id}`} key={`${item.name} + ${item.size}`}>
                                     <AsteroidMainItem
                                         item={item}
                                         activeDistance={activeDistance}
                                     />
-                                </Link>) : asteroids.filter(item => item.dangerous === true).map(item =>
-                                    <Link to={`/asteroid/${item.id}`} key={`${item.name} + ${item.size}`}>
-                                        <AsteroidMainItem
-                                            item={item}
-                                            activeDistance={activeDistance}
-                                        />
-                                    </Link>)
+                                </Link>)
                         }
                     </div>
                 </div>
